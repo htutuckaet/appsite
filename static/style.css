@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=BenchNine:300&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'BenchNine', sans-serif;
+    background: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2c62c2fa-f93c-4eb3-be2a-21a0e5af6107/d6rnj7n-99e2af63-0f6e-4dc5-97c2-848bfcabc6e7.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJjNjJjMmZhLWY5M2MtNGViMy1iZTJhLTIxYTBlNWFmNjEwN1wvZDZybmo3bi05OWUyYWY2My0wZjZlLTRkYzUtOTdjMi04NDhiZmNhYmM2ZTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rrV3lW6x1shPl_YRsy870228R8JCzN0S-HQrcqTCZlM);
+    /* background: url(https://yadi.sk/i/xIu-m5BhegtF_w); */
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    font-family: 'BenchNine', sans-serif;
+    text-align: center;
+}
+
+form {
+    border: 1px solid black;
+    width: 20%;
+    margin: 10px auto;
+    padding: 5px;
+    background: rgba(209, 209, 209, 0.2);
+    border-radius: 8px;
+    text-align: left;
+    /* box-shadow: 1px 1px rgba(0, 0, 0, 0.5); */
+}
+
+input {
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    filter: drop-shadow(1px 2px grey);
+    transition: filter 10s;
+}
+
+a {
+    display: block;
+    text-align: center;
+    color: cadetblue;
+    text-decoration: None;
+    font-size: 0.95rem;
+}
+
+label {
+    display: block;
+    padding-bottom: 1px;
+}
+
+p {
+    display: block;
+    text-align: center;
+}
+
+ol {
+    display: block;
+    left: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    display: block;
+}

@@ -1,0 +1,44 @@
+<head>
+    <link href={{ url_for('static', filename='style.css') }}
+    rel='stylesheet'
+    >
+    <link href={{ url_for('static', filename='users.css') }}
+    rel='stylesheet'
+    >
+</head>
+
+{% if name != session['account'] %}
+<p> something went wrong. please come back to 
+    <a href={{ url_for('login') }} Log In>login</a>
+    or
+    <a href={{ url_for('index') }} SignUp-page>signup</a>
+</p>
+
+{% else %}
+
+    <h1>todo app</h1> 
+    <p>hello, {{name|title}}!</p> 
+    <p>what did you eat for breakfast?</p>
+
+    <div class="wrapper">
+    {% for task in tasks %}
+    <div id={{ loop.index|string }} class="card">
+        <div class="card-img"></div>
+        <h2 class="card-heading">{{ task.title }}</h2>
+        <p class="card-details">{{ task.details }}</p>
+        <p class="card-start-date">created: {{ task.created_on }}</p>
+        {% if task.deadline %}
+        <p class="card-end-date">deadline: {{ task.deadline }}</p>
+        {% endif %}
+        <div class="card-ui">
+            <a href={{"/status/" + loop.index|string }}>change status</a>
+            <a onclick=remove_task(event) href="#">remove</a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+    <a href={{ url_for('logout') }}> log out! </a>
+
+    <script src={{ url_for('static', filename='script.js') }}></script>
+{% endif %}

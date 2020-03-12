@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"database": "${workspaceFolder:app1}/app.db",
+				"dialect": "SQLite",
+				"name": "app"
+			}
+		],
+		"sqltools.useNodeRuntime": true
+	}
+}

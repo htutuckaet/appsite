@@ -1,0 +1,18 @@
+* {
+    border: 1px solid;
+}
+
+div.card {
+    width: 220px;
+    margin: 20px;
+}
+
+div.card-img {
+    height: 100px;
+    width: 100%;
+    background: url(https://picsum.photos/600/300);
+}
+
+h2.card-heading {
+    margin-top: 0;
+}

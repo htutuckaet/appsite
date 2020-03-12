@@ -1,0 +1,32 @@
+<head>
+    <link href={{ url_for('static', filename='style.css') }}
+    rel='stylesheet'
+    >
+</head>
+
+<h1>todo app</h1>
+
+{% if error == 'passwords_dont_match' %}
+<p> Sorry, seems like passwords don't match. Try again!</p>
+{% endif %}
+
+{% if error == 'account_already_exists' %}
+<p> Sorry, seems like this account already exists. Try login!</p>
+{% endif %}
+
+<form method="POST">
+    <label>name</label>
+    <input minlength=5 maxlength=20 name='name' placeholder="one word, five and more symbols"required>
+    <br>
+    <label>email</label>
+    <input minlength=5 maxlength=30 name='email' placeholder="enter a valid email" required>
+    <br>
+    <label>password</label>
+    <input minlength=6 maxlength=20 name='password' type="password" placeholder="six and more symbols" required>
+    <br>
+    <label>password check</label>
+    <input minlength=6 maxlength=20 name='password_check' type="password" placeholder="repeat password" required>
+    <br>
+    <input type="submit" value="send!">
+    <a href={{ url_for('login') }} Log In>already have account!</a>
+</form>
