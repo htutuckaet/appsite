@@ -9,8 +9,8 @@
 
 <h1>todo app</h1>
 
-{% if error%}
-<p> sorry, this account doesn't exist. try again or go to <a href='/'>sign Up!</a> page </p>
+{% if error %}
+    <p> sorry, this account doesn't exist. try again or go to <a href='/'>sign Up!</a> page </p>
 {% endif %}
 
 
@@ -23,6 +23,6 @@
     <br>
     <input type="checkbox" name="remember">
     <label id="remember"> remember me </label>
-    <input type="submit" value="Send!">
+    <input type="submit" value="submit!">
     <a href={{ url_for('index') }} SignUp-page>create new account!</a>
 </form>

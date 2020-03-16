@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, session, url_for
-from model import add_user, check_user, get_user_tasks, change_user_task, remove_user_task
+from flask import Flask, render_template, request, redirect, session, url_for, abort
+from model import add_user, check_user, get_user_tasks, change_user_task, remove_user_task, create_user_task, get_id_by_name
 from sqlalchemy.exc import IntegrityError
 from model import AccountExists, AccountNotFound
 
@@ -25,9 +25,21 @@ def index():
         return redirect('/users/' + name)
     return render_template('index.html') 
 
-@app.route('/users/<name>') 
+@app.route('/users/<name>', methods=['GET', 'POST']) 
 def user_page(name):
-    user_tasks = get_user_tasks(name)
+    if request.method == 'POST':
+        title = request.form['title']
+        details = request.form['details']
+        deadline = request.form['deadline']
+        try:
+            user_id = get_id_by_name(name)
+        except AccountNotFound:
+            abort(404)
+        create_user_task(user_id, title, details, deadline)
+    try:
+        user_tasks = get_user_tasks(name)
+    except AccountNotFound:
+        abort(404)
     return render_template('user.html', name=name, tasks=user_tasks) 
 
 @app.route('/login', methods=['GET','POST'])
@@ -41,7 +53,7 @@ def login():
             return render_template("login.html", error=True)
         session['account'] = name
         return redirect('/users/' + name)
-    return render_template('login.html') 
+    return render_template('login.html')
 
 @app.route('/logout')
 def logout():
@@ -56,7 +68,8 @@ def change_status(id):
 @app.route('/remove/<int:id>')
 def remove_task(id):
     remove_user_task(session['account'], id)
-    return redirect(url_for('user_page', name=session['account']))
+    # return redirect(url_for('user_page', name=session['account']))
+    return {"message": "Task was deleted"}, 200
 
 @app.errorhandler(404)
 def page_not_found(e):

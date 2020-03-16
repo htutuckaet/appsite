@@ -80,17 +80,23 @@ def get_user_tasks(name):
     engine = create_engine('sqlite:///app.db', echo=True)
     session = Session(bind=engine)
     user = session.query(User).filter_by(username=name).first()
-    user_tasks = user.tasks
-    session.close()
-
-    return user_tasks
+    try:
+        return user.tasks
+    except AttributeError:
+        raise AccountNotFound
+    finally:
+        session.close()
 
 def create_user_task(author_id, title, details='', deadline=None):
     engine = create_engine('sqlite:///app.db', echo=True)
     session = Session(bind=engine)
     user = session.query(User).get(author_id)
     user_tasks = user.tasks
-    new_task = Task(title=title, details=details, deadline=deadline)
+    if deadline:
+        deadline = date.fromisoformat(deadline)
+        new_task = Task(title=title, details=details, deadline=deadline)
+    else:
+        new_task = Task(title=title, details=details)
     user_tasks.append(new_task)
     session.commit()
     session.close()
@@ -113,3 +119,13 @@ def remove_user_task(name, id):
     session.delete(task_to_remove)
     session.commit()
     session.close()
+
+def get_id_by_name(name):
+    engine = create_engine('sqlite:///app.db', echo=True)
+    session = Session(bind=engine)
+    user = session.query(User).filter_by(username=name).first()
+    session.close()
+    try:
+        return user.id
+    except AttributeError:
+        raise AccountNotFound
