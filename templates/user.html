@@ -18,7 +18,7 @@
 
         <h1>todo app</h1> 
         <p>hello, {{name|title}}!</p> 
-        <p>what did you eat for breakfast?</p>
+        <p>what is your plans for today?</p>
 
         <div class="wrapper">
         {% for task in tasks %}
@@ -30,9 +30,17 @@
             {% if task.deadline %}
             <p class="card-end-date">deadline: {{ task.deadline }}</p>
             {% endif %}
+            <!-- {% if task.status == 0 %}
+            <p class="card-status">task is in progress</p>
+            {% else %}
+            <p class="card-status">task is done</p>
+            {% endif %} -->
             <div class="card-ui">
-                <a href={{"/status/" + loop.index|string }}>change status</a>
-                <br>
+                {% if task.status == 0 %}
+                <a href={{"/status/" + loop.index|string }}>task is in progress</a>
+                {% else %}
+                <a href={{"/status/" + loop.index|string }}>task is done</a>
+                {% endif %}
                 <a href="#" onclick=remove_task(event)>remove</a>
             </div>
         </div>
