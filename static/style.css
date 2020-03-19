@@ -54,7 +54,7 @@ input[type="submit"]:hover {
 a {
     display: block;
     text-align: center;
-    color: cadetblue;
+    color: rgba(95, 158, 160, 1);
     text-shadow: rgb(42, 65, 66) 1px 1px;
     text-decoration: None;
     font-size: 0.95rem;
