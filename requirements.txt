@@ -53,3 +53,4 @@ Werkzeug
 wheel                  
 wrapt                    
 yarl                 
+gunicorn
